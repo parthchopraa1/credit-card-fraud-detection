@@ -1,0 +1,139 @@
+{
+  "split": "time-ordered: first 80% by Time = train, last 20% by Time = test (no shuffle)",
+  "results": [
+    {
+      "model": "Dummy (predict all legit)",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5,
+      "pr_auc": 0.0013,
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 75,
+      "true_negatives": 56887,
+      "note": "accuracy = 99.87% while catching 0 frauds"
+    },
+    {
+      "model": "Logistic Regression (balanced)",
+      "precision": 0.0707,
+      "recall": 0.8933,
+      "f1": 0.1311,
+      "roc_auc": 0.9863,
+      "pr_auc": 0.762,
+      "true_positives": 67,
+      "false_positives": 880,
+      "false_negatives": 8,
+      "true_negatives": 56007,
+      "cv_pr_auc_mean": 0.7544243228814225,
+      "cv_pr_auc_std": 0.0355132825075549
+    },
+    {
+      "model": "Logistic Regression + SMOTE",
+      "precision": 0.0679,
+      "recall": 0.88,
+      "f1": 0.1261,
+      "roc_auc": 0.9859,
+      "pr_auc": 0.7715,
+      "true_positives": 66,
+      "false_positives": 906,
+      "false_negatives": 9,
+      "true_negatives": 55981
+    },
+    {
+      "model": "Random Forest",
+      "precision": 0.9815,
+      "recall": 0.7067,
+      "f1": 0.8217,
+      "roc_auc": 0.9378,
+      "pr_auc": 0.8065,
+      "true_positives": 53,
+      "false_positives": 1,
+      "false_negatives": 22,
+      "true_negatives": 56886,
+      "cv_pr_auc_mean": 0.849237648867861,
+      "cv_pr_auc_std": 0.014661740644797366
+    },
+    {
+      "model": "XGBoost",
+      "precision": 0.8906,
+      "recall": 0.76,
+      "f1": 0.8201,
+      "roc_auc": 0.988,
+      "pr_auc": 0.7962,
+      "true_positives": 57,
+      "false_positives": 7,
+      "false_negatives": 18,
+      "true_negatives": 56880,
+      "cv_pr_auc_mean": 0.8678348802955014,
+      "cv_pr_auc_std": 0.021924494946825735
+    },
+    {
+      "model": "XGBoost (Optuna-tuned)",
+      "precision": 0.8889,
+      "recall": 0.7467,
+      "f1": 0.8116,
+      "roc_auc": 0.9792,
+      "pr_auc": 0.7838,
+      "true_positives": 56,
+      "false_positives": 7,
+      "false_negatives": 19,
+      "true_negatives": 56880
+    },
+    {
+      "model": "Isolation Forest (unsupervised)",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.9434,
+      "pr_auc": 0.035,
+      "true_positives": 0,
+      "false_positives": 60,
+      "false_negatives": 75,
+      "true_negatives": 56827
+    }
+  ],
+  "best_model": "Random Forest",
+  "tuned_threshold": {
+    "best_f1_threshold": 0.35,
+    "f1_at_best_threshold": 0.8507
+  },
+  "optuna": {
+    "n_trials": 25,
+    "best_val_pr_auc": 0.8822,
+    "best_params": {
+      "n_estimators": 533,
+      "max_depth": 6,
+      "learning_rate": 0.1111,
+      "subsample": 0.6082,
+      "colsample_bytree": 0.988,
+      "min_child_weight": 9,
+      "reg_lambda": 0.2659,
+      "scale_pos_weight": 545.3909
+    }
+  },
+  "business_impact": {
+    "model": "Random Forest",
+    "threshold": 0.35,
+    "frauds_caught": 57,
+    "value_caught_usd": 5090.99,
+    "frauds_missed": 18,
+    "value_missed_usd": 2638.27,
+    "total_fraud_value_usd": 7729.26,
+    "false_positives": 2,
+    "alerts_reviewed": 59,
+    "review_cost_per_alert_usd": 10.0,
+    "review_cost_usd": 590.0,
+    "net_value_usd": 4500.99,
+    "dummy_value_caught_usd": 0.0,
+    "dummy_value_missed_usd": 7729.26,
+    "note": "Review cost is an ASSUMPTION ($10 per flagged alert), not a measured fact. Net value = value of fraud caught - review cost. The dummy baseline catches $0 and misses all fraud."
+  },
+  "test_size": 56962,
+  "test_frauds": 75,
+  "test_time_range": [
+    145248.0,
+    172792.0
+  ],
+  "elapsed_seconds": 960.0
+}

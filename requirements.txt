@@ -1,0 +1,14 @@
+# Pinned to the versions this project was built and verified with
+# (Python 3.12, 2026-11-05). Loosen the pins if you install elsewhere.
+pandas==3.1.1
+numpy==2.5.4
+scikit-learn==1.9.1
+scipy==1.18.1
+streamlit==1.66.1
+matplotlib==3.11.2
+joblib==1.6.0
+imbalanced-learn==0.14.2
+xgboost==3.4.1
+lightgbm==4.7.0
+optuna==5.0.0
+mlflow==3.18.0
